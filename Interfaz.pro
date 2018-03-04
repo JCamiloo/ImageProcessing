@@ -14,9 +14,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    colortransformation.cpp
+    colortransformation.cpp \
+    noise.cpp
 
 HEADERS  += mainwindow.h \
-    colortransformation.h
+    colortransformation.h \
+    noise.h \
+    kernel.h
 
 FORMS    += mainwindow.ui

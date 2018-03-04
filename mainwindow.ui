@@ -100,30 +100,43 @@
       <string>RGB - HSV</string>
      </property>
     </widget>
-    <widget class="QRadioButton" name="radioButton_3">
+    <widget class="QRadioButton" name="radioButtonMeanFilter">
      <property name="geometry">
       <rect>
        <x>20</x>
        <y>100</y>
-       <width>82</width>
+       <width>101</width>
        <height>17</height>
       </rect>
      </property>
      <property name="text">
-      <string>Function 3</string>
+      <string>Add mean filter</string>
      </property>
     </widget>
-    <widget class="QRadioButton" name="radioButton_4">
+    <widget class="QRadioButton" name="radioButtonMedianFilter">
      <property name="geometry">
       <rect>
        <x>20</x>
        <y>130</y>
-       <width>82</width>
+       <width>111</width>
        <height>17</height>
       </rect>
      </property>
      <property name="text">
-      <string>Function 4</string>
+      <string>Add median filter</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButtonGaussianFilter">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>160</y>
+       <width>111</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Add gaussian filter </string>
      </property>
     </widget>
    </widget>
