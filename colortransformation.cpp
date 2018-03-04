@@ -1,5 +1,6 @@
 #include "colortransformation.h"
 #include "QImageWriter"
+
 ColorTransformation::ColorTransformation()
 {
 
@@ -8,9 +9,9 @@ ColorTransformation::ColorTransformation()
 void ColorTransformation::RGBtoHSL(QImage image){
 
     HSLImage = QImage(image.width(), image.height(), image.format());
-    QImage red(image.width(), image.height(), image.format());
-    QImage green(image.width(), image.height(), image.format());
-    QImage blue(image.width(), image.height(), image.format());
+    red = QImage(image.width(), image.height(), image.format());
+    green = QImage(image.width(), image.height(), image.format());
+    blue = QImage(image.width(), image.height(), image.format());
 
     for(int y = 0; y < image.height(); y++){
         for (int x = 0; x < image.width(); x++){
@@ -81,20 +82,20 @@ void ColorTransformation::RGBtoHSL(QImage image){
             blue.setPixel(x, y, qRgb(0, 0, b));
         }
     }
-    QImageWriter writerH("C:/Users/sony/Desktop/HSL-H.jpg");
-    QImageWriter writerS("C:/Users/sony/Desktop/HSL-S.jpg");
-    QImageWriter writerL("C:/Users/sony/Desktop/HSL-L.jpg");
-    writerH.write(red);
-    writerS.write(green);
-    writerL.write(blue);
+    //QImageWriter writerH("C:/Users/sony/Desktop/HSL-H.jpg");
+    //QImageWriter writerS("C:/Users/sony/Desktop/HSL-S.jpg");
+    //QImageWriter writerL("C:/Users/sony/Desktop/HSL-L.jpg");
+    //writerH.write(red);
+    //writerS.write(green);
+    //writerL.write(blue);
 }
 
 void ColorTransformation::RGBtoHSV(QImage image){
 
     HSVImage = QImage(image.width(), image.height(), image.format());
-    QImage red(image.width(), image.height(), image.format());
-    QImage green(image.width(), image.height(), image.format());
-    QImage blue(image.width(), image.height(), image.format());
+    red = QImage(image.width(), image.height(), image.format());
+    green = QImage(image.width(), image.height(), image.format());
+    blue = QImage(image.width(), image.height(), image.format());
 
     for(int y = 0; y < image.height(); y++){
         for (int x = 0; x < image.width(); x++){
@@ -161,10 +162,10 @@ void ColorTransformation::RGBtoHSV(QImage image){
             blue.setPixel(x, y, qRgb(0, 0, b));
         }
     }
-    QImageWriter writerH("C:/Users/sony/Desktop/HSV-H.jpg");
-    QImageWriter writerS("C:/Users/sony/Desktop/HSV-S.jpg");
-    QImageWriter writerV("C:/Users/sony/Desktop/HSV-V.jpg");
-    writerH.write(red);
-    writerS.write(green);
-    writerV.write(blue);
+    //QImageWriter writerH("C:/Users/sony/Desktop/HSV-H.jpg");
+    //QImageWriter writerS("C:/Users/sony/Desktop/HSV-S.jpg");
+    //QImageWriter writerV("C:/Users/sony/Desktop/HSV-V.jpg");
+    //writerH.write(red);
+    //writerS.write(green);
+    //writerV.write(blue);
 }

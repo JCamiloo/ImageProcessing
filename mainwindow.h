@@ -4,6 +4,11 @@
 #include <QMainWindow>
 #include <QFileDialog>
 #include <colortransformation.h>
+#include <QPixmap>
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#include <QGraphicsPixmapItem>
+#include <QApplication>
 
 namespace Ui {
 class MainWindow;
@@ -18,22 +23,24 @@ public:
     ~MainWindow();
     void activateFunctions();
     void deactivateFunctions();
+    void showImage(QImage);
 
 private slots:
     void on_radioButtonRGBtoHSL_clicked();
     void on_radioButtonRGBtoHSV_clicked();
     void on_pushButtonLoadImage_clicked();
     void on_pushButtonSaveImage_clicked();
-
-
     void on_radioButton_3_clicked();
-
     void on_radioButton_4_clicked();
 
 private:
     Ui::MainWindow *ui;
     ColorTransformation* transform;
     QImage image;
+
+    QGraphicsScene* scene;
+    QGraphicsView* view;
+    QGraphicsPixmapItem* item;
 
 
 

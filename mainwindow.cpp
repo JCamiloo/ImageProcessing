@@ -42,6 +42,10 @@ void MainWindow::on_pushButtonSaveImage_clicked()
         imageObject.load(imagePath);
         imageObject = transform->getHSLImage();
         imageObject.save(imagePath);
+        showImage(transform->getBlueImage());
+        showImage(transform->getGreenImage());
+        showImage(transform->getRedImage());
+        showImage(imageObject);
     }
 
     if (ui->radioButtonRGBtoHSV->isChecked()) {
@@ -51,6 +55,10 @@ void MainWindow::on_pushButtonSaveImage_clicked()
         imageObject.load(imagePath);
         imageObject = transform->getHSVImage();
         imageObject.save(imagePath);
+        showImage(transform->getBlueImage());
+        showImage(transform->getGreenImage());
+        showImage(transform->getRedImage());
+        showImage(imageObject);
     }
 
 }
@@ -70,6 +78,14 @@ void MainWindow::activateFunctions(){
     ui->radioButton_4->setEnabled(true);
 }
 
+
+void MainWindow::showImage(QImage ImageToShow){
+    scene = new QGraphicsScene();
+    view = new QGraphicsView(scene);
+    item = new QGraphicsPixmapItem(QPixmap::fromImage(ImageToShow));
+    scene->addItem(item);
+    view->show();
+}
 
 void MainWindow::on_radioButtonRGBtoHSL_clicked()
 {
