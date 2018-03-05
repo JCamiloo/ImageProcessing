@@ -66,7 +66,7 @@ void ColorTransformation::RGBtoHSL(QImage image){
                 }
 
                 if(H > 1){
-                    H += 1;
+                    H -= 1;
                 }
             }
             //printf("var_H: %f - var_S %f - var_L %f \n", H, S, L);
