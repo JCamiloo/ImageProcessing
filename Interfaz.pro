@@ -4,9 +4,9 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui charts
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets charts
 
 TARGET = Interfaz
 TEMPLATE = app
@@ -15,11 +15,13 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     colortransformation.cpp \
-    noise.cpp
+    noise.cpp \
+    histogram.cpp
 
 HEADERS  += mainwindow.h \
     colortransformation.h \
     noise.h \
-    kernel.h
+    kernel.h \
+    histogram.h
 
 FORMS    += mainwindow.ui

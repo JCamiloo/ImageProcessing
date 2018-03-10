@@ -139,6 +139,19 @@
       <string>Add gaussian filter </string>
      </property>
     </widget>
+    <widget class="QRadioButton" name="radioButtonHistogram">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>190</y>
+       <width>82</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Histogram</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QLabel" name="labelImage">
     <property name="geometry">

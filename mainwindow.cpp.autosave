@@ -106,18 +106,14 @@ void MainWindow::on_pushButtonSaveImage_clicked()
         QBarSeries *series = new QBarSeries();
         series->append(set);
 
-
         chart->addSeries(series);
         chart->setTitle("Histogram");
         chart->setAnimationOptions(QChart::SeriesAnimations);
 
-
         axis->append(categories);
         chart->createDefaultAxes();
 
-
         chartView->setRenderHint(QPainter::Antialiasing);
-
 
         window.setCentralWidget(chartView);
         window.resize(420,300);

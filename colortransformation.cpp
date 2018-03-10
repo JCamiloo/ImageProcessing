@@ -55,10 +55,10 @@ void ColorTransformation::RGBtoHSL(QImage image){
                     H = del_B - del_G;
                 }
                 else if(var_G == var_Max){
-                    H = (1 / 3) + del_R - del_B;
+                    H = (1 / 3.0f) + del_R - del_B;
                 }
                 else if(var_B == var_Max){
-                    H = (2 / 3) + del_G - del_R;
+                    H = (2 / 3.0f) + del_G - del_R;
                 }
 
                 if(H < 0){
@@ -134,10 +134,10 @@ void ColorTransformation::RGBtoHSV(QImage image){
                     H = del_B - del_G;
                 }
                 else if(var_G == var_Max){
-                    H = (1/3) + del_R - del_B;
+                    H = (1/3.0f) + del_R - del_B;
                 }
                 else if(var_B == var_Max){
-                    H = (2/3) + del_G - del_R;
+                    H = (2/3.0f) + del_G - del_R;
                 }
 
                 if (H < 0) {
