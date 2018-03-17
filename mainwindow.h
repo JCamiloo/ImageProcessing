@@ -41,8 +41,13 @@ private slots:
     void on_radioButtonMeanFilter_clicked();
     void on_radioButtonMedianFilter_clicked();
     void on_radioButtonGaussianFilter_clicked();
-
     void on_radioButtonHistogram_clicked();
+
+    void on_radioButtonEqualize_clicked();
+
+    void on_radioButtonIsodata_clicked();
+
+    void on_radioButtonOtsu_clicked();
 
 private:
     Ui::MainWindow *ui;
