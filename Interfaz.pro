@@ -16,12 +16,13 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     colortransformation.cpp \
     noise.cpp \
-    histogram.cpp
+    histogram.cpp \
+    morphological.cpp
 
 HEADERS  += mainwindow.h \
     colortransformation.h \
     noise.h \
-    kernel.h \
-    histogram.h
+    histogram.h \
+    morphological.h
 
 FORMS    += mainwindow.ui

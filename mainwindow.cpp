@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
     transform = new ColorTransformation();
     smooth = new noise();
     Histogram = new histogram();
+    morpho = new morphological();
     deactivateFunctions();
     //connect(ui->pushButtonLoadImage,SIGNAL(released()),this,SLOT(loadImage()));
 }
@@ -115,12 +116,67 @@ void MainWindow::on_pushButtonSaveImage_clicked()
 
     if(ui->radioButtonOtsu->isChecked()){
         int thres = Histogram->calculateThreshold(OTSU,image);
-        printf("%d",thres);
         Histogram->thresholding(thres,image);
         QImage imageObject;
         QString imagePath = QFileDialog::getSaveFileName(this,tr("Save file"),"",tr("JPEG (*.jpg *.jpeg);;PNG (*.png)" ));
         imageObject.load(imagePath);
         imageObject = Histogram->getThresholdedImage();
+        imageObject.save(imagePath);
+        showImage(imageObject);
+    }
+
+    if(ui->radioButtonErosion->isChecked()){
+        image = image.convertToFormat(QImage::Format_Grayscale8);
+        morpho->thresholding(127,image);
+        morpho->saveImage(morpho->getThresholdedImage());
+        morpho->morpho(image,EROSION);
+        QImage imageObject;
+        QString imagePath = QFileDialog::getSaveFileName(this,tr("Save file"),"",tr("JPEG (*.jpg *.jpeg);;PNG (*.png)" ));
+        imageObject.load(imagePath);
+        imageObject = morpho->getMorpologicalImage();
+        imageObject.save(imagePath);
+        showImage(imageObject);
+    }
+
+    if(ui->radioButtonDilate->isChecked()){
+        image = image.convertToFormat(QImage::Format_Grayscale8);
+        morpho->thresholding(127,image);
+        morpho->saveImage(morpho->getThresholdedImage());
+        morpho->morpho(image,DILATE);
+        QImage imageObject;
+        QString imagePath = QFileDialog::getSaveFileName(this,tr("Save file"),"",tr("JPEG (*.jpg *.jpeg);;PNG (*.png)" ));
+        imageObject.load(imagePath);
+        imageObject = morpho->getMorpologicalImage();
+        imageObject.save(imagePath);
+        showImage(imageObject);
+    }
+
+    if(ui->radioButtonOpening->isChecked()){
+        image = image.convertToFormat(QImage::Format_Grayscale8);
+        morpho->thresholding(127,image);
+        morpho->saveImage(morpho->getThresholdedImage());
+        morpho->morpho(image,DILATE);
+        morpho->saveImage(morpho->getMorpologicalImage());
+        morpho->morpho(image,EROSION);
+        QImage imageObject;
+        QString imagePath = QFileDialog::getSaveFileName(this,tr("Save file"),"",tr("JPEG (*.jpg *.jpeg);;PNG (*.png)" ));
+        imageObject.load(imagePath);
+        imageObject = morpho->getMorpologicalImage();
+        imageObject.save(imagePath);
+        showImage(imageObject);
+    }
+
+    if(ui->radioButtonClosing->isChecked()){
+        image = image.convertToFormat(QImage::Format_Grayscale8);
+        morpho->thresholding(127,image);
+        morpho->saveImage(morpho->getThresholdedImage());
+        morpho->morpho(image,EROSION);
+        morpho->saveImage(morpho->getMorpologicalImage());
+        morpho->morpho(image,DILATE);
+        QImage imageObject;
+        QString imagePath = QFileDialog::getSaveFileName(this,tr("Save file"),"",tr("JPEG (*.jpg *.jpeg);;PNG (*.png)" ));
+        imageObject.load(imagePath);
+        imageObject = morpho->getMorpologicalImage();
         imageObject.save(imagePath);
         showImage(imageObject);
     }
@@ -135,8 +191,13 @@ void MainWindow::deactivateFunctions(){
     ui->radioButtonGaussianFilter->setEnabled(false);
     ui->pushButtonSaveImage->setEnabled(false);
     ui->radioButtonEqualize->setEnabled(false);
+    ui->radioButtonEquHistogram->setEnabled(false);
     ui->radioButtonIsodata->setEnabled(false);
     ui->radioButtonOtsu->setEnabled(false);
+    ui->radioButtonErosion->setEnabled(false);
+    ui->radioButtonDilate->setEnabled(false);
+    ui->radioButtonOpening->setEnabled(false);
+    ui->radioButtonClosing->setEnabled(false);
 }
 
 void MainWindow::activateFunctions(){
@@ -146,9 +207,14 @@ void MainWindow::activateFunctions(){
     ui->radioButtonMedianFilter->setEnabled(true);
     ui->radioButtonGaussianFilter->setEnabled(true);
     ui->radioButtonHistogram->setEnabled(true);
+    ui->radioButtonEquHistogram->setEnabled(true);
     ui->radioButtonEqualize->setEnabled(true);
     ui->radioButtonIsodata->setEnabled(true);
     ui->radioButtonOtsu->setEnabled(true);
+    ui->radioButtonErosion->setEnabled(true);
+    ui->radioButtonDilate->setEnabled(true);
+    ui->radioButtonOpening->setEnabled(true);
+    ui->radioButtonClosing->setEnabled(true);
 }
 
 void MainWindow::showImage(QImage ImageToShow){
@@ -214,6 +280,36 @@ void MainWindow::on_radioButtonHistogram_clicked()
     window.show();
 }
 
+void MainWindow::on_radioButtonEquHistogram_clicked()
+{
+    Histogram->equalizeHistogram(image);
+    int* equHistogramImage = Histogram->getEqualizedHistogram();
+
+    QBarSet* set = new QBarSet("Intensity of equalized pixels ");
+    QStringList categories;
+
+    for (int i = 0; i < 256; i++) {
+        categories.append("" + i);
+        set->insert(i,equHistogramImage[i]);
+    }
+
+    QBarSeries *series = new QBarSeries();
+    series->append(set);
+
+    chart->addSeries(series);
+    chart->setTitle( + "Equalized histogram");
+    chart->setAnimationOptions(QChart::SeriesAnimations);
+
+    axis->append(categories);
+    chart->createDefaultAxes();
+
+    chartView->setRenderHint(QPainter::Antialiasing);
+
+    window.setCentralWidget(chartView);
+    window.resize(420,300);
+    window.show();
+}
+
 
 void MainWindow::on_radioButtonEqualize_clicked()
 {
@@ -229,3 +325,27 @@ void MainWindow::on_radioButtonOtsu_clicked()
 {
     ui->pushButtonSaveImage->setEnabled(true);
 }
+
+void MainWindow::on_radioButtonErosion_clicked()
+{
+    ui->pushButtonSaveImage->setEnabled(true);
+}
+
+void MainWindow::on_radioButtonDilate_clicked()
+{
+    ui->pushButtonSaveImage->setEnabled(true);
+}
+
+void MainWindow::on_radioButtonOpening_clicked()
+{
+    ui->pushButtonSaveImage->setEnabled(true);
+}
+
+void MainWindow::on_radioButtonClosing_clicked()
+{
+    ui->pushButtonSaveImage->setEnabled(true);
+}
+
+
+
+

@@ -199,12 +199,12 @@
       <rect>
        <x>20</x>
        <y>90</y>
-       <width>47</width>
-       <height>13</height>
+       <width>71</width>
+       <height>16</height>
       </rect>
      </property>
      <property name="text">
-      <string>Filters</string>
+      <string>Noise filters</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_2">
@@ -314,6 +314,114 @@
      </property>
      <property name="text">
       <string>Equalize</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_6">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>140</y>
+       <width>81</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Morphological</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButtonErosion">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>160</y>
+       <width>82</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Erosion</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButtonDilate">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>180</y>
+       <width>82</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Dilate</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButtonOpening">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>200</y>
+       <width>82</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Opening</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButtonClosing">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>220</y>
+       <width>82</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Closing</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButtonEquHistogram">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>220</y>
+       <width>121</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Equalized histogram</string>
      </property>
     </widget>
    </widget>
