@@ -27,7 +27,7 @@ This feature only applies for gray scale images. Has been implemented the basic 
 * Otsu
 
 ### Morphological 
-The strutural element is a 7x7 square. This feature only applies for gray scale images. Has been implemented the basic operators:
+The structural element is a 7x7 square. This feature only applies for gray scale images. Has been implemented the basic operators:
 * Erosion
 * Dilate
 * Opening

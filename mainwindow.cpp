@@ -180,6 +180,81 @@ void MainWindow::on_pushButtonSaveImage_clicked()
         imageObject.save(imagePath);
         showImage(imageObject);
     }
+
+    if(ui->radioButtonGSErosion->isChecked()){
+        morpho->saveImage(image);
+        morpho->morpho(image,GSEROSION);
+        QImage imageObject;
+        QString imagePath = QFileDialog::getSaveFileName(this,tr("Save file"),"",tr("JPEG (*.jpg *.jpeg);;PNG (*.png)" ));
+        imageObject.load(imagePath);
+        imageObject = morpho->getMorpologicalImage();
+        imageObject.save(imagePath);
+        showImage(imageObject);
+    }
+
+    if(ui->radioButtonGSDilate->isChecked()){
+        morpho->saveImage(image);
+        morpho->morpho(image,GSDILATE);
+        QImage imageObject;
+        QString imagePath = QFileDialog::getSaveFileName(this,tr("Save file"),"",tr("JPEG (*.jpg *.jpeg);;PNG (*.png)" ));
+        imageObject.load(imagePath);
+        imageObject = morpho->getMorpologicalImage();
+        imageObject.save(imagePath);
+        showImage(imageObject);
+    }
+
+    if(ui->radioButtonGSOpening->isChecked()){
+        morpho->saveImage(image);
+        morpho->morpho(image,GSDILATE);
+        morpho->saveImage(morpho->getMorpologicalImage());
+        morpho->morpho(image,GSEROSION);
+        QImage imageObject;
+        QString imagePath = QFileDialog::getSaveFileName(this,tr("Save file"),"",tr("JPEG (*.jpg *.jpeg);;PNG (*.png)" ));
+        imageObject.load(imagePath);
+        imageObject = morpho->getMorpologicalImage();
+        imageObject.save(imagePath);
+        showImage(imageObject);
+    }
+
+    if(ui->radioButtonGSClosing->isChecked()){
+        morpho->saveImage(image);
+        morpho->morpho(image,GSEROSION);
+        morpho->saveImage(morpho->getMorpologicalImage());
+        morpho->morpho(image,GSDILATE);
+        QImage imageObject;
+        QString imagePath = QFileDialog::getSaveFileName(this,tr("Save file"),"",tr("JPEG (*.jpg *.jpeg);;PNG (*.png)" ));
+        imageObject.load(imagePath);
+        imageObject = morpho->getMorpologicalImage();
+        imageObject.save(imagePath);
+        showImage(imageObject);
+    }
+
+    if(ui->radioButtonGSGradient->isChecked()){
+        morpho->saveImage(image);
+        morpho->morpho(image,GRADIENT);
+        QImage imageObject;
+        QString imagePath = QFileDialog::getSaveFileName(this,tr("Save file"),"",tr("JPEG (*.jpg *.jpeg);;PNG (*.png)" ));
+        imageObject.load(imagePath);
+        imageObject = morpho->getMorpologicalImage();
+        imageObject.save(imagePath);
+        showImage(imageObject);
+    }
+    if(ui->radioButtonGSTopHat->isChecked()){
+        image = image.convertToFormat(QImage::Format_Grayscale8);
+        morpho->saveImage(image);
+        morpho->morpho(image,GSDILATE);
+        morpho->saveImage(morpho->getMorpologicalImage());
+        morpho->morpho(image,GSEROSION);
+        morpho->saveImage(morpho->getMorpologicalImage());
+        morpho->morpho(image,TOPHAT);
+        QImage imageObject;
+        QString imagePath = QFileDialog::getSaveFileName(this,tr("Save file"),"",tr("JPEG (*.jpg *.jpeg);;PNG (*.png)" ));
+        imageObject.load(imagePath);
+        imageObject = morpho->getMorpologicalImage();
+        imageObject.save(imagePath);
+        showImage(imageObject);
+    }
+
 }
 
 void MainWindow::deactivateFunctions(){
@@ -198,6 +273,13 @@ void MainWindow::deactivateFunctions(){
     ui->radioButtonDilate->setEnabled(false);
     ui->radioButtonOpening->setEnabled(false);
     ui->radioButtonClosing->setEnabled(false);
+
+    ui->radioButtonGSErosion->setEnabled(false);
+    ui->radioButtonGSDilate->setEnabled(false);
+    ui->radioButtonGSOpening->setEnabled(false);
+    ui->radioButtonGSClosing->setEnabled(false);
+    ui->radioButtonGSGradient->setEnabled(false);
+    ui->radioButtonGSTopHat->setEnabled(false);
 }
 
 void MainWindow::activateFunctions(){
@@ -215,6 +297,13 @@ void MainWindow::activateFunctions(){
     ui->radioButtonDilate->setEnabled(true);
     ui->radioButtonOpening->setEnabled(true);
     ui->radioButtonClosing->setEnabled(true);
+
+    ui->radioButtonGSErosion->setEnabled(true);
+    ui->radioButtonGSDilate->setEnabled(true);
+    ui->radioButtonGSOpening->setEnabled(true);
+    ui->radioButtonGSClosing->setEnabled(true);
+    ui->radioButtonGSGradient->setEnabled(true);
+    ui->radioButtonGSTopHat->setEnabled(true);
 }
 
 void MainWindow::showImage(QImage ImageToShow){
@@ -346,6 +435,32 @@ void MainWindow::on_radioButtonClosing_clicked()
     ui->pushButtonSaveImage->setEnabled(true);
 }
 
+void MainWindow::on_radioButtonGSGradient_clicked()
+{
+    ui->pushButtonSaveImage->setEnabled(true);
+}
 
+void MainWindow::on_radioButtonGSTopHat_clicked()
+{
+    ui->pushButtonSaveImage->setEnabled(true);
+}
 
+void MainWindow::on_radioButtonGSErosion_clicked()
+{
+    ui->pushButtonSaveImage->setEnabled(true);
+}
 
+void MainWindow::on_radioButtonGSDilate_clicked()
+{
+    ui->pushButtonSaveImage->setEnabled(true);
+}
+
+void MainWindow::on_radioButtonGSOpening_clicked()
+{
+    ui->pushButtonSaveImage->setEnabled(true);
+}
+
+void MainWindow::on_radioButtonGSClosing_clicked()
+{
+    ui->pushButtonSaveImage->setEnabled(true);
+}

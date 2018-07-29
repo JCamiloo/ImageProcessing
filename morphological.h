@@ -6,7 +6,14 @@ enum operatorMorpho{
     EROSION,
     DILATE,
     OPENING,
-    CLOSING
+    CLOSING,
+    GSEROSION,
+    GSDILATE,
+    GSOPENING,
+    GSCLOSING,
+    GRADIENT,
+    TOPHAT,
+    OTHER
 };
 
 class morphological
@@ -16,6 +23,7 @@ public:
     void thresholding(int threshold, QImage image);
     void morpho(QImage,operatorMorpho);
     void saveImage(QImage);
+    void setOriginalImage(QImage);
     QImage getThresholdedImage(){return qThresholdedImage; }
     QImage getMorpologicalImage(){return qMorphologicalImage; }
 

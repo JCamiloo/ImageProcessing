@@ -66,6 +66,12 @@ private slots:
     void on_radioButtonOpening_clicked();
     void on_radioButtonClosing_clicked();
     void on_radioButtonEquHistogram_clicked();
+    void on_radioButtonGSGradient_clicked();
+    void on_radioButtonGSTopHat_clicked();
+    void on_radioButtonGSErosion_clicked();
+    void on_radioButtonGSDilate_clicked();
+    void on_radioButtonGSOpening_clicked();
+    void on_radioButtonGSClosing_clicked();
 };
 
 #endif // MAINWINDOW_H
